@@ -4,6 +4,7 @@ import pandas as pd
 jugada = 0
 df = pd.DataFrame( columns= ["jugador" , "cpu", "estado"])
 bol = True
+maquina_2 = ""
 
 
 contador_u = 0
@@ -17,7 +18,7 @@ while(bol):
 
     if jugada == 0 :
         maquina = random.choice(["piedra", "papel", "tijera"])
-#  empieza
+        maquina_2 = maquina
         
     df = df.append({"jugador":usuario, "cpu":maquina}, ignore_index=True)
 
@@ -43,33 +44,58 @@ while(bol):
 
     final = dff["jugador"].value_counts()
     final = final.reset_index()
-    resultado = final.loc[0,"index"]
+    maquina_2 = final.loc[0,"index"]
 
-    if resultado == "piedra":
-        maquina = "papel"
+    """if resultado == "piedra":
+        maquina_2 = "tijera"
     if resultado == "papel":
-        maquina = "tijera"
+        maquina_2 = "piedra"
     if resultado == "tijera":
-        maquina = "piedra"
+        maquina_2 = "papel" """
+ 
     print("\n")  
-    print("\n")  
-    print(maquina+"\n")   
-
 
     if usuario == maquina:
-            print("Empate \n")
+            print("maquina: " +maquina)   
+            print("usuario: " +usuario)   
+            print("")
+            print("empate") 
+            print("")  
+            print("contador CPU = " + str(contador_m))  
+            print("jugador = " + str(contador_u)) 
+            print("")  
+            print("\n")
 
     if (usuario == "piedra" and maquina == "tijera") or (usuario == "papel" and maquina == "piedra") or (usuario == "tijera" and maquina == "papel"):
             contador_u = contador_u + 1
-            print("ganaste \n")
+            
+            print("maquina: " +maquina)   
+            print("usuario: " +usuario)   
+            print("")
+            print("ganaste") 
+            print("")  
+            print("contador CPU = " + str(contador_m))  
+            print("jugador = " + str(contador_u)) 
+            print("")  
+            print("\n")
+
 
     if (usuario == "piedra" and maquina == "papel") or (usuario == "papel" and maquina == "tijera") or (usuario == "tijera" and maquina == "piedra"):
 
             contador_m = contador_m + 1
-            print("perdiste \n")
-
+            
+            print("maquina: " +maquina)   
+            print("usuario: " +usuario)   
+            print("")
+            print("perdiste ") 
+            print("")  
+            print("contador CPU = " + str(contador_m))  
+            print("jugador = " + str(contador_u)) 
+            print("")  
+            print("\n") 
     
     jugada = jugada + 1
+    maquina = maquina_2
     if contador_u == 7 or contador_m == 7:
         bol = False
 
@@ -78,4 +104,5 @@ if contador_m == 7:
 if contador_u == 7:
     print("usuario gana")
 
-df.to_csv("salida.csv")
+#df.to_csv("salida.csv")
+#print(df)
